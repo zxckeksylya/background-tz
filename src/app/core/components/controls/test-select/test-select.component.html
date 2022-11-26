@@ -1,0 +1,10 @@
+<label class="label" [class.required]="required">{{ label }}</label>
+<div class="select">
+  <input class="select__content" readonly [formControl]="formControl" />
+  <app-dropdown
+    class="dropdown"
+    (valueChange)="setValue($event)"
+    [data]="data"
+    [active]="active"
+  ></app-dropdown>
+</div>
