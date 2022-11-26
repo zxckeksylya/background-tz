@@ -1,0 +1,26 @@
+:host {
+  display: table-row;
+
+  .input {
+    outline: none;
+    display: table-cell;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    font-size: 17px;
+    border: 1px solid #c3c3c3;
+    border-radius: 3px;
+  }
+
+  .label {
+    display: table-cell;
+    width: auto;
+    padding-right: 17px;
+    &.required::after {
+      content: '*';
+      top: 0;
+      right: 0;
+      color: red;
+    }
+  }
+}
