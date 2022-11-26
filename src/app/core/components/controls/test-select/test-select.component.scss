@@ -1,0 +1,41 @@
+:host {
+  display: table-row;
+
+  .select {
+    display: table-cell;
+
+    position: relative;
+
+    &__content {
+      border: 1px solid #c3c3c3;
+      border-radius: 3px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 15px;
+      font-size: 17px;
+    }
+
+    &:hover .dropdown {
+      display: block;
+    }
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 40px;
+  }
+
+  .label {
+    display: table-cell;
+    width: auto;
+    padding-right: 17px;
+    &.required::after {
+      content: '*';
+      top: 0;
+      right: 0;
+      color: red;
+    }
+  }
+}
