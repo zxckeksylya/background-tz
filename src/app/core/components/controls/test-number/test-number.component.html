@@ -9,10 +9,11 @@
       (blur)="onTouched()"
     />
     <div class="number-buttons">
-      <button class="number-button number-button--top" (click)="addValue()">
+      <button type="button" class="number-button number-button--top" (click)="addValue()">
         <div class="triangle triangle--top"></div>
       </button>
       <button
+        type="button"
         class="number-button number-button--bottom"
         [disabled]="formControl.value <= minValue"
         (click)="subtractValue()"
