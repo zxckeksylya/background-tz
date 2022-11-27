@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import './assets/styles/palette.scss';
+
 @font-face {
   font-family: 'PT sans';
   src: url('./assets/fonts/PTSans-Bold.ttf');
@@ -15,4 +17,8 @@
 
 body {
   font-family: 'PT sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }

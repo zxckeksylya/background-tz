@@ -67,25 +67,6 @@ export class TestCheckboxGroupComponent implements ControlValueAccessor, OnDestr
 
   public onChange: (value: any) => void = () => {};
 
-  public toggleCheckAllControls(): void {
-    this.toggleBlock = true;
-
-    if (this.checkAllControls.getRawValue().check) {
-      for (const iterator of this.formArray.controls) {
-        const label = Object.keys(iterator.controls)[0];
-        iterator.controls[label].setValue(false);
-      }
-      this.checkAllControls.setValue({ check: false });
-    } else {
-      for (const iterator of this.formArray.controls) {
-        const label = Object.keys(iterator.controls)[0];
-        iterator.controls[label].setValue(true);
-      }
-      this.checkAllControls.setValue({ check: true });
-    }
-    this.toggleBlock = false;
-  }
-
   private onInputValueChange(): void {
     this.formArray.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(v => {
       this.onChange(v);

@@ -1,0 +1,13 @@
+:host {
+  display: block;
+
+  .input {
+    margin-right: 15px;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}

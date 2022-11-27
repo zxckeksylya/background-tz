@@ -1,1 +1,13 @@
 <router-outlet></router-outlet>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <app-test-input formControlName="input"></app-test-input>
+  <app-test-number formControlName="num"></app-test-number>
+  <app-test-select formControlName="select" [data]="data"></app-test-select>
+  <app-test-checkbox formControlName="checkBox" label="checkbox"></app-test-checkbox>
+  <app-test-checkbox-group formControlName="checkBoxGroup"></app-test-checkbox-group>
+  <app-test-input-group formControlName="inputGroup"></app-test-input-group>
+  <app-button type="submit" [disabled]="form.invalid">submit</app-button>
+  <app-add-field-button>Добавить ещё</app-add-field-button>
+  <app-remove-field-button></app-remove-field-button>
+</form>

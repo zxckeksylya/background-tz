@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-
-type ButtonType = 'button' | 'submit';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { BaseButton } from '../../classes/base-button.class';
 
 @Component({
   selector: 'app-button',
@@ -8,13 +7,4 @@ type ButtonType = 'button' | 'submit';
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent {
-  @Input() public type: ButtonType = 'button';
-  @Input() public disabled = false;
-
-  @Output() public buttonClick = new EventEmitter<Event>();
-
-  public onButtonClick(event: Event): void {
-    this.buttonClick.emit(event);
-  }
-}
+export class ButtonComponent extends BaseButton {}
