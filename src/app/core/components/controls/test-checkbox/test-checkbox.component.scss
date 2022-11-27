@@ -1,0 +1,62 @@
+:host {
+  display: block;
+
+  .label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 17px;
+    line-height: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .label .checkbox {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .checkbox-bird {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background-color: #fff;
+  }
+
+  .label:hover .checkbox ~ .checkbox-bird {
+    background-color: #ccc;
+  }
+
+  .label .checkbox:checked ~ .checkbox-bird {
+    background-color: var(--yellow-hover);
+  }
+
+  .checkbox-bird:after {
+    content: '';
+    position: absolute;
+    display: none;
+  }
+
+  .label .checkbox:checked ~ .checkbox-bird:after {
+    display: block;
+  }
+
+  .label .checkbox-bird:after {
+    left: 50%;
+    top: 20%;
+    width: 8px;
+    height: 12px;
+    border: solid var(--text);
+    border-width: 0 4px 4px 0;
+    transform-origin: left;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+}
