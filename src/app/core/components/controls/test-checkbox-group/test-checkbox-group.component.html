@@ -1,0 +1,7 @@
+<div *ngFor="let item of formArray.controls; let i = index" [formGroup]="item">
+  <app-test-checkbox [formControlName]="labels[i]" [label]="labels[i]"></app-test-checkbox>
+</div>
+
+<div [formGroup]="checkAllControls">
+  <app-test-checkbox formControlName="check" label="выбрать все"></app-test-checkbox>
+</div>
