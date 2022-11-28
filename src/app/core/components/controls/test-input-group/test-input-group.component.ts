@@ -20,8 +20,6 @@ export class TestInputGroupComponent implements ControlValueAccessor, DoCheck, O
     data: this.formBuilder.array([]),
   });
 
-  public data: any;
-
   private destroy$ = new Subject<void>();
 
   constructor(private formBuilder: FormBuilder) {}
