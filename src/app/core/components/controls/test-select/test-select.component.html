@@ -1,4 +1,3 @@
-<label class="label" [class.required]="required">{{ label }}</label>
 <div class="select">
   <input class="select__content" readonly [formControl]="formControl" />
   <app-dropdown
@@ -7,4 +6,5 @@
     [data]="data"
     [active]="active"
   ></app-dropdown>
+  <div class="arrow"></div>
 </div>

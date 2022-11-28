@@ -1,0 +1,9 @@
+:host {
+  display: block;
+
+  .description {
+    color: var(--gray);
+    font-size: 13px;
+    line-height: 17px;
+  }
+}

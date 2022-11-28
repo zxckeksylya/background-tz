@@ -1,0 +1,7 @@
+<button class="button" (click)="onButtonClick($event)" [disabled]="disabled" [type]="type">
+  <div class="circle">
+    <div class="line line--vertical"></div>
+    <div class="line line--horizont"></div>
+  </div>
+  <span><ng-content></ng-content></span>
+</button>

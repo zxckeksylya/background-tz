@@ -1,0 +1,15 @@
+:host {
+  display: block;
+
+  .label {
+    display: table-cell;
+    width: auto;
+    padding-right: 17px;
+    &.required::after {
+      content: '*';
+      top: 0;
+      right: 0;
+      color: red;
+    }
+  }
+}

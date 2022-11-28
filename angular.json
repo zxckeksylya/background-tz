@@ -28,11 +28,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "src/styles.scss",
-              "src/assets/styles/normalize.scss",
-              "src/assets/styles/palette.scss"
-            ],
+            "styles": ["src/styles.scss", "src/assets/styles/normalize.scss"],
             "scripts": []
           },
           "configurations": {
@@ -95,11 +91,7 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "src/styles.scss",
-              "src/assets/styles/normalize.scss",
-              "src/assets/styles/palette.scss"
-            ],
+            "styles": ["src/styles.scss", "src/assets/styles/normalize.scss"],
             "scripts": []
           }
         },
@@ -113,6 +105,7 @@
     }
   },
   "cli": {
-    "schematicCollections": ["@angular-eslint/schematics"]
+    "schematicCollections": ["@angular-eslint/schematics"],
+    "analytics": false
   }
 }
