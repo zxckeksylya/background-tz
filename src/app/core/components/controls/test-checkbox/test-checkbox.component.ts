@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BaseControl } from '../../../classes/base-control.class';
 
 @Component({
@@ -7,4 +7,6 @@ import { BaseControl } from '../../../classes/base-control.class';
   styleUrls: ['./test-checkbox.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TestCheckboxComponent extends BaseControl {}
+export class TestCheckboxComponent extends BaseControl {
+  @Input() public label = '';
+}

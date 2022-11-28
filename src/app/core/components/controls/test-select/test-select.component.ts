@@ -14,12 +14,11 @@ export class TestSelectComponent extends BaseControl {
   public active!: number;
 
   public override writeValue(value: any): void {
-    if (this.data.findIndex(x => x === value)) {
-      this.active = 0;
-      this.formControl.setValue(this.data[0], { emitEvent: false });
+    const index = this.data.findIndex(x => x === value);
+    if (index === -1) {
     } else {
-      this.active = this.data.findIndex(x => x === value);
-      this.formControl.setValue(value, { emitEvent: false });
+      this.active = index;
+      this.formControl.patchValue(value);
     }
   }
 

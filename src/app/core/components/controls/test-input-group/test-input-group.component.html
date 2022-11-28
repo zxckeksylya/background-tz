@@ -1,0 +1,22 @@
+<form [formGroup]="form">
+  <div formArrayName="data">
+    <div
+      class="input-group"
+      *ngFor="
+        let item of form.controls.data.controls;
+        let i = index;
+        let last = last;
+        let first = first
+      "
+    >
+      <app-test-input class="input" [formControlName]="i"></app-test-input>
+      <app-remove-field-button
+        *ngIf="last && !first"
+        (buttonClick)="removeControl()"
+      ></app-remove-field-button>
+      <app-add-field-button *ngIf="last" (buttonClick)="addControl()"
+        >Добавить еще</app-add-field-button
+      >
+    </div>
+  </div>
+</form>

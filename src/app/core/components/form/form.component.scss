@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  overflow-y: auto;
+  .form {
+    padding-top: 10px;
+    display: table;
+
+    &-row {
+      display: table-row;
+    }
+
+    &-cell {
+      display: table-cell;
+      padding-bottom: 15px;
+    }
+  }
+}
