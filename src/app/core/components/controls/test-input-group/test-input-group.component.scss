@@ -9,5 +9,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding-bottom: 15px;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
   }
 }

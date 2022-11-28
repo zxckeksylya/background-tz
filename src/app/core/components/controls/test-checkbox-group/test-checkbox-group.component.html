@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <div [formGroup]="checkAllControls">
-    <app-test-checkbox formControlName="check" label="выбрать все"></app-test-checkbox>
+  <div>
+    <app-test-checkbox [formControl]="checkAllControls" label="выбрать все"></app-test-checkbox>
   </div>
 </form>

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormGroup, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { FormControl } from '@angular/forms';
 
@@ -23,9 +23,7 @@ export class TestCheckboxGroupComponent implements ControlValueAccessor, OnDestr
     data: this.formBuilder.array([]),
   });
 
-  public checkAllControls: FormGroup = this.formBuilder.group({
-    check: false,
-  });
+  public checkAllControls = this.formBuilder.control(false);
 
   private destroy$ = new Subject<void>();
 
@@ -43,13 +41,13 @@ export class TestCheckboxGroupComponent implements ControlValueAccessor, OnDestr
   }
 
   public writeValue(value: any): void {
-    if (value) {
+    if (value.data) {
       for (const item of value.data) {
         this.form.controls.data.push(new FormControl(item));
       }
     } else {
       for (const {} of this.labels) {
-        this.form.controls.data.push(new FormControl());
+        this.form.controls.data.push(new FormControl(false));
       }
     }
   }
@@ -78,27 +76,25 @@ export class TestCheckboxGroupComponent implements ControlValueAccessor, OnDestr
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(v => {
       this.onChange(v);
       if (!this.toggleBlock) {
-        const isFullChecked = v.data?.filter(x => x === true).length === v.data?.length;
+        const isFullChecked = this.form.getRawValue().data?.every(x => x === true);
         if (isFullChecked) {
-          this.checkAllControls.setValue({ check: true }, { emitEvent: false });
+          this.checkAllControls.setValue(true, { emitEvent: false });
         } else {
-          this.checkAllControls.setValue({ check: false }, { emitEvent: false });
+          this.checkAllControls.setValue(false, { emitEvent: false });
         }
       }
     });
 
     this.checkAllControls.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(v => {
-      this.toggleBlock = true;
-      if (v.check) {
-        for (const iterator of this.form.controls.data.controls) {
-          iterator.setValue(true);
+      if (this.checkAllControls.getRawValue()) {
+        for (const control of this.form.controls.data.controls) {
+          control.setValue(true, { emitEvent: false });
         }
       } else {
-        for (const iterator of this.form.controls.data.controls) {
-          iterator.setValue(false);
+        for (const control of this.form.controls.data.controls) {
+          control.setValue(false, { emitEvent: false });
         }
       }
-      this.toggleBlock = false;
     });
   }
 }

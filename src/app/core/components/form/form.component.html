@@ -1,0 +1,40 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row" *ngFor="let item of labels">
+    <app-label class="form-cell" [required]="jsonFormat[item].required">{{
+      jsonFormat[item].label
+    }}</app-label>
+    <div class="form-cell" [ngSwitch]="jsonFormat[item].controlType">
+      <ng-template [ngSwitchCase]="'input'"
+        ><app-test-input [formControlName]="item"></app-test-input
+      ></ng-template>
+      <ng-template [ngSwitchCase]="'number'"
+        ><app-test-number [formControlName]="item"></app-test-number
+      ></ng-template>
+      <ng-template [ngSwitchCase]="'checkbox'">
+        <app-test-checkbox [formControlName]="item"></app-test-checkbox>
+      </ng-template>
+      <ng-template [ngSwitchCase]="'select'">
+        <app-test-select
+          [formControlName]="item"
+          [data]="jsonFormat[item].choices"
+        ></app-test-select>
+      </ng-template>
+      <ng-template [ngSwitchCase]="'checkboxGroup'">
+        <app-test-checkbox-group
+          [formControlName]="item"
+          [labels]="jsonFormat[item].choices"
+        ></app-test-checkbox-group>
+      </ng-template>
+      <ng-template [ngSwitchCase]="'inputGroup'">
+        <app-test-input-group [formControlName]="item"></app-test-input-group>
+      </ng-template>
+      <app-description *ngIf="jsonFormat[item].description"
+        >{{ jsonFormat[item].description }}
+      </app-description>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-cell"></div>
+    <app-button class="form-cell" type="submit" [disabled]="this.form.invalid">submit</app-button>
+  </div>
+</form>

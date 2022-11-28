@@ -13,6 +13,7 @@ import { TestInputModule } from './core/components/controls/test-input/test-inpu
 import { TestNumberModule } from './core/components/controls/test-number/test-number.module';
 import { TestSelectModule } from './core/components/controls/test-select/test-select.module';
 import { RemoveFieldButtonModule } from './core/components/remove-field-button/remove-field-button.module';
+import { FormModule } from './core/components/form/form.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { RemoveFieldButtonModule } from './core/components/remove-field-button/r
     AddFieldButtonModule,
     RemoveFieldButtonModule,
     TestInputGroupModule,
+    FormModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

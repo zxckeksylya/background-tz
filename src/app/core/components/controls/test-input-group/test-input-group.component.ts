@@ -1,6 +1,6 @@
-import { Component, OnDestroy, ChangeDetectionStrategy, DoCheck } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, FormBuilder } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-test-input-group',
@@ -15,7 +15,7 @@ import { Subject } from 'rxjs';
     },
   ],
 })
-export class TestInputGroupComponent implements ControlValueAccessor, DoCheck, OnDestroy {
+export class TestInputGroupComponent implements ControlValueAccessor, OnDestroy, OnInit {
   public form = this.formBuilder.group({
     data: this.formBuilder.array([]),
   });
@@ -24,8 +24,8 @@ export class TestInputGroupComponent implements ControlValueAccessor, DoCheck, O
 
   constructor(private formBuilder: FormBuilder) {}
 
-  public ngDoCheck(): void {
-    this.onChange(this.form.getRawValue());
+  public ngOnInit(): void {
+    this.onInputValueChanges();
   }
 
   public ngOnDestroy(): void {
@@ -34,7 +34,7 @@ export class TestInputGroupComponent implements ControlValueAccessor, DoCheck, O
   }
 
   public writeValue(value: any): void {
-    if (!value) {
+    if (!value.data) {
       this.form.controls.data.push(new FormControl());
     } else {
       for (const item of value.data) {
@@ -64,10 +64,16 @@ export class TestInputGroupComponent implements ControlValueAccessor, DoCheck, O
   public onChange: (value: any) => void = () => {};
 
   public addControl(): void {
-    this.form.controls.data.controls.push(new FormControl(''));
+    this.form.controls.data.push(new FormControl(''));
   }
 
   public removeControl(): void {
-    this.form.controls.data.controls.pop();
+    this.form.controls.data.removeAt(-1);
+  }
+
+  private onInputValueChanges(): void {
+    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(v => {
+      this.onChange(v);
+    });
   }
 }

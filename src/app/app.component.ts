@@ -25,6 +25,25 @@ export class AppComponent implements OnInit {
       required: true,
       description: 'description',
     },
+    num: {
+      label: 'number',
+      controlType: 'number',
+    },
+    select: {
+      label: 'select',
+      controlType: 'select',
+      choices: ['asd', 'qwe'],
+      required: true,
+    },
+    inputGroup: {
+      label: 'inputGroup',
+      controlType: 'inputGroup',
+    },
+    checkboxGroup: {
+      label: 'checkboxes',
+      controlType: 'checkboxGroup',
+      choices: ['asd', 'dsd'],
+    },
   };
 
   // public data = [
@@ -50,17 +69,14 @@ export class AppComponent implements OnInit {
     this.form = this.formBuilder.group({
       input: ['', [Validators.required]],
       num: 0,
-      select: ['', [Validators.required]],
+      select: ['2', [Validators.required]],
       checkBox: true,
-      checkBoxGroup: [[]],
-      inputGroup: [],
+      checkBoxGroup: { data: [true, false, true] },
+      inputGroup: { data: ['mem', 'lol'] },
     });
   }
 
-  public onSubmit(): void {
-    if (this.form.invalid) {
-      return;
-    }
-    console.log(this.form.getRawValue());
+  public onSubmit(value: any): void {
+    console.log(value);
   }
 }
